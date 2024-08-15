@@ -75,10 +75,18 @@ namespace ToDoList
                 this.FillLists();
                 this.txtNewTask.Text = string.Empty;
             }
+            else if (this.listDone.SelectedItem != null || this.listDone.SelectedIndex != -1)
+            {
+                ToDoItem selectedTask = (ToDoItem)this.listDone.SelectedItem;
+                this.Tasks.Remove(selectedTask);
+                this.FillLists();
+            }
             else
             {
                 MessageBox.Show("Please select an item to delete.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+
+
 
             this.notifyIcon1.BalloonTipText = "Task deleted.";
             this.notifyIcon1.ShowBalloonTip(2000);
