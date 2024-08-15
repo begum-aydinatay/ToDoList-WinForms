@@ -55,7 +55,7 @@
             lblToDoList = new Label();
             panel1 = new Panel();
             grpNewTask = new GroupBox();
-            textBox1 = new TextBox();
+            txtNewTask = new TextBox();
             listDone = new ListBox();
             lblDone = new Label();
             menuStrip1.SuspendLayout();
@@ -109,6 +109,7 @@
             menuNewItem.ShortcutKeys = Keys.Control | Keys.N;
             menuNewItem.Size = new Size(253, 28);
             menuNewItem.Text = "New Item";
+            menuNewItem.Click += btnAddItem_Click;
             // 
             // menuEditItem
             // 
@@ -117,6 +118,7 @@
             menuEditItem.ShortcutKeys = Keys.Control | Keys.E;
             menuEditItem.Size = new Size(253, 28);
             menuEditItem.Text = "Edit Item";
+            menuEditItem.Click += btnEditItem_Click;
             // 
             // toolStripMenuItem1
             // 
@@ -130,6 +132,7 @@
             menuDeleteItem.ShortcutKeys = Keys.Control | Keys.D;
             menuDeleteItem.Size = new Size(253, 28);
             menuDeleteItem.Text = "Delete Item";
+            menuDeleteItem.Click += btnDeleteItem_Click;
             // 
             // menuAbout
             // 
@@ -284,6 +287,7 @@
             checkBoxListToDo.Name = "checkBoxListToDo";
             checkBoxListToDo.Size = new Size(395, 227);
             checkBoxListToDo.TabIndex = 3;
+            checkBoxListToDo.SelectedIndexChanged += checkBoxListToDo_SelectedIndexChanged;
             // 
             // lblToDoList
             // 
@@ -309,7 +313,7 @@
             // grpNewTask
             // 
             grpNewTask.BackColor = SystemColors.Control;
-            grpNewTask.Controls.Add(textBox1);
+            grpNewTask.Controls.Add(txtNewTask);
             grpNewTask.Dock = DockStyle.Top;
             grpNewTask.Location = new Point(8, 7);
             grpNewTask.Margin = new Padding(5, 3, 5, 3);
@@ -321,16 +325,16 @@
             grpNewTask.Tag = "";
             grpNewTask.Text = "New Task";
             // 
-            // textBox1
+            // txtNewTask
             // 
-            textBox1.Dock = DockStyle.Fill;
-            textBox1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox1.Location = new Point(15, 38);
-            textBox1.Multiline = true;
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(365, 113);
-            textBox1.TabIndex = 0;
-            textBox1.TextAlign = HorizontalAlignment.Center;
+            txtNewTask.Dock = DockStyle.Fill;
+            txtNewTask.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtNewTask.Location = new Point(15, 38);
+            txtNewTask.Multiline = true;
+            txtNewTask.Name = "txtNewTask";
+            txtNewTask.Size = new Size(365, 113);
+            txtNewTask.TabIndex = 0;
+            txtNewTask.TextAlign = HorizontalAlignment.Center;
             // 
             // listDone
             // 
@@ -415,6 +419,6 @@
         private Label lblDone;
         private ListBox listDone;
         private CheckedListBox checkBoxListToDo;
-        private TextBox textBox1;
+        private TextBox txtNewTask;
     }
 }

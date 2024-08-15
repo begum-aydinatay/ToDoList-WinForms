@@ -12,5 +12,10 @@ namespace ToDoList
         public string ItemText { get; set; }
         public DateTime DoneDate { get; set; }
         public bool IsDone { get; set; }
+
+        public override string ToString()
+        {
+            return ItemText;
+        }
     }
 }
