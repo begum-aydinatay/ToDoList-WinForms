@@ -8,15 +8,21 @@ namespace ToDoList
         }
 
         private List<ToDoItem> Tasks = new List<ToDoItem>();
+        private string Path = Application.StartupPath + @"\data.xml";
+        private XMLSerializer serializer = new XMLSerializer();
 
-        private void FillToDoList()
+        private void Form1_Load(object sender, EventArgs e)
         {
-            this.checkBoxListToDo.Items.Clear();
-            
-            foreach (ToDoItem task in Tasks)
+            if (System.IO.File.Exists(Path))
             {
-                this.checkBoxListToDo.Items.Add(task);
+                this.ReadToDoList();
             }
+            this.FillToDoList();
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            this.SaveToDoList();
         }
 
         private void btnAddItem_Click(object sender, EventArgs e)
@@ -30,7 +36,7 @@ namespace ToDoList
 
             this.Tasks.Add(newTask);
             this.FillToDoList();
-            this.txtNewTask.Text = "";
+            this.txtNewTask.Text = string.Empty;
         }
 
         private void btnEditItem_Click(object sender, EventArgs e)
@@ -55,7 +61,7 @@ namespace ToDoList
                 ToDoItem selectedTask = (ToDoItem)this.checkBoxListToDo.SelectedItem;
                 this.Tasks.Remove(selectedTask);
                 this.FillToDoList();
-                this.txtNewTask.Text = "";
+                this.txtNewTask.Text = string.Empty;
             }
             else
             {
@@ -89,5 +95,26 @@ namespace ToDoList
         {
             this.txtNewTask.Paste();
         }
+
+        private void FillToDoList()
+        {
+            this.checkBoxListToDo.Items.Clear();
+
+            foreach (ToDoItem task in Tasks)
+            {
+                this.checkBoxListToDo.Items.Add(task);
+            }
+        }
+
+        private void SaveToDoList()
+        {
+            serializer.Serialize<List<ToDoItem>>(Path, this.Tasks);
+        }
+
+        private void ReadToDoList()
+        {
+            this.Tasks = serializer.Deserialize<List<ToDoItem>>(Path);
+        }
+
     }
 }
