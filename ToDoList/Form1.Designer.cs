@@ -217,6 +217,7 @@
             btnCut.Name = "btnCut";
             btnCut.Size = new Size(29, 24);
             btnCut.Text = "Cut";
+            btnCut.Click += btnCut_Click;
             // 
             // btnCopy
             // 
@@ -226,6 +227,7 @@
             btnCopy.Name = "btnCopy";
             btnCopy.Size = new Size(29, 24);
             btnCopy.Text = "Copy";
+            btnCopy.Click += btnCopy_Click;
             // 
             // btnPaste
             // 
@@ -235,6 +237,7 @@
             btnPaste.Name = "btnPaste";
             btnPaste.Size = new Size(29, 24);
             btnPaste.Text = "Paste";
+            btnPaste.Click += btnPaste_Click;
             // 
             // toolStripSeparator1
             // 
