@@ -61,6 +61,15 @@
             listDone = new ListBox();
             lblDone = new Label();
             notifyIcon1 = new NotifyIcon(components);
+            contextMenuStrip1 = new ContextMenuStrip(components);
+            cmenuNewItem = new ToolStripMenuItem();
+            cmenuEditItem = new ToolStripMenuItem();
+            toolStripMenuItem3 = new ToolStripSeparator();
+            cmenuDeleteItem = new ToolStripMenuItem();
+            toolStripMenuItem4 = new ToolStripSeparator();
+            cmenuCut = new ToolStripMenuItem();
+            cmenuCopy = new ToolStripMenuItem();
+            cmenuPaste = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
@@ -68,6 +77,7 @@
             splitContainer1.Panel2.SuspendLayout();
             splitContainer1.SuspendLayout();
             grpNewTask.SuspendLayout();
+            contextMenuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // menuStrip1
@@ -373,15 +383,85 @@
             // 
             notifyIcon1.BalloonTipIcon = ToolTipIcon.Info;
             notifyIcon1.BalloonTipTitle = "Information";
+            notifyIcon1.ContextMenuStrip = contextMenuStrip1;
             notifyIcon1.Icon = (Icon)resources.GetObject("notifyIcon1.Icon");
             notifyIcon1.Text = "To Do List";
             notifyIcon1.Visible = true;
+            // 
+            // contextMenuStrip1
+            // 
+            contextMenuStrip1.ImageScalingSize = new Size(20, 20);
+            contextMenuStrip1.Items.AddRange(new ToolStripItem[] { cmenuNewItem, cmenuEditItem, toolStripMenuItem3, cmenuDeleteItem, toolStripMenuItem4, cmenuCut, cmenuCopy, cmenuPaste });
+            contextMenuStrip1.Name = "contextMenuStrip1";
+            contextMenuStrip1.Size = new Size(214, 172);
+            // 
+            // cmenuNewItem
+            // 
+            cmenuNewItem.Image = Properties.Resources.add_todo_item;
+            cmenuNewItem.Name = "cmenuNewItem";
+            cmenuNewItem.ShortcutKeys = Keys.Control | Keys.N;
+            cmenuNewItem.Size = new Size(213, 26);
+            cmenuNewItem.Text = "New Item";
+            cmenuNewItem.Click += btnAddItem_Click;
+            // 
+            // cmenuEditItem
+            // 
+            cmenuEditItem.Image = Properties.Resources.edit_todo_item;
+            cmenuEditItem.Name = "cmenuEditItem";
+            cmenuEditItem.ShortcutKeys = Keys.Control | Keys.E;
+            cmenuEditItem.Size = new Size(213, 26);
+            cmenuEditItem.Text = "Edit Item";
+            cmenuEditItem.Click += btnEditItem_Click;
+            // 
+            // toolStripMenuItem3
+            // 
+            toolStripMenuItem3.Name = "toolStripMenuItem3";
+            toolStripMenuItem3.Size = new Size(210, 6);
+            // 
+            // cmenuDeleteItem
+            // 
+            cmenuDeleteItem.Image = Properties.Resources.delete_todo_item;
+            cmenuDeleteItem.Name = "cmenuDeleteItem";
+            cmenuDeleteItem.ShortcutKeys = Keys.Control | Keys.D;
+            cmenuDeleteItem.Size = new Size(213, 26);
+            cmenuDeleteItem.Text = "Delete Item";
+            cmenuDeleteItem.Click += btnDeleteItem_Click;
+            // 
+            // toolStripMenuItem4
+            // 
+            toolStripMenuItem4.Name = "toolStripMenuItem4";
+            toolStripMenuItem4.Size = new Size(210, 6);
+            // 
+            // cmenuCut
+            // 
+            cmenuCut.Image = Properties.Resources.cut_todo_item;
+            cmenuCut.Name = "cmenuCut";
+            cmenuCut.Size = new Size(213, 26);
+            cmenuCut.Text = "Cut";
+            cmenuCut.Click += btnCut_Click;
+            // 
+            // cmenuCopy
+            // 
+            cmenuCopy.Image = Properties.Resources.copy_todo_item;
+            cmenuCopy.Name = "cmenuCopy";
+            cmenuCopy.Size = new Size(213, 26);
+            cmenuCopy.Text = "Copy";
+            cmenuCopy.Click += btnCopy_Click;
+            // 
+            // cmenuPaste
+            // 
+            cmenuPaste.Image = Properties.Resources.paste_todo_item;
+            cmenuPaste.Name = "cmenuPaste";
+            cmenuPaste.Size = new Size(213, 26);
+            cmenuPaste.Text = "Paste";
+            cmenuPaste.Click += btnPaste_Click;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(10F, 23F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(822, 518);
+            ContextMenuStrip = contextMenuStrip1;
             Controls.Add(splitContainer1);
             Controls.Add(toolStrip1);
             Controls.Add(menuStrip1);
@@ -404,6 +484,7 @@
             splitContainer1.ResumeLayout(false);
             grpNewTask.ResumeLayout(false);
             grpNewTask.PerformLayout();
+            contextMenuStrip1.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -441,5 +522,14 @@
         private CheckedListBox checkBoxListToDo;
         private TextBox txtNewTask;
         private NotifyIcon notifyIcon1;
+        private ContextMenuStrip contextMenuStrip1;
+        private ToolStripMenuItem cmenuNewItem;
+        private ToolStripMenuItem cmenuEditItem;
+        private ToolStripSeparator toolStripMenuItem3;
+        private ToolStripMenuItem cmenuDeleteItem;
+        private ToolStripSeparator toolStripMenuItem4;
+        private ToolStripMenuItem cmenuCut;
+        private ToolStripMenuItem cmenuCopy;
+        private ToolStripMenuItem cmenuPaste;
     }
 }
