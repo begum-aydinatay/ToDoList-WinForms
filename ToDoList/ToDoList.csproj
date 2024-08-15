@@ -7,6 +7,9 @@
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
     <ApplicationIcon>todolist_icon.ico</ApplicationIcon>
+    <NeutralLanguage>en</NeutralLanguage>
+    <Product>To Do List</Product>
+    <Authors>Begum Aydinatay</Authors>
   </PropertyGroup>
 
   <ItemGroup>

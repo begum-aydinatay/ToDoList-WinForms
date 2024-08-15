@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             menuStrip1 = new MenuStrip();
             menuFile = new ToolStripMenuItem();
             menuExit = new ToolStripMenuItem();
@@ -58,6 +60,7 @@
             txtNewTask = new TextBox();
             listDone = new ListBox();
             lblDone = new Label();
+            notifyIcon1 = new NotifyIcon(components);
             menuStrip1.SuspendLayout();
             toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
@@ -93,6 +96,7 @@
             menuExit.Name = "menuExit";
             menuExit.Size = new Size(124, 28);
             menuExit.Text = "Exit";
+            menuExit.Click += menuExit_Click;
             // 
             // menuToDoList
             // 
@@ -144,10 +148,11 @@
             // 
             // menuMoreInformation
             // 
-            menuMoreInformation.Image = Properties.Resources.about_todo_icon;
+            menuMoreInformation.Image = Properties.Resources.about_todo_item;
             menuMoreInformation.Name = "menuMoreInformation";
             menuMoreInformation.Size = new Size(237, 28);
             menuMoreInformation.Text = "More Information";
+            menuMoreInformation.Click += menuMoreInformation_Click;
             // 
             // toolStripMenuItem2
             // 
@@ -290,7 +295,9 @@
             checkBoxListToDo.Name = "checkBoxListToDo";
             checkBoxListToDo.Size = new Size(395, 227);
             checkBoxListToDo.TabIndex = 3;
+            checkBoxListToDo.ItemCheck += checkBoxListToDo_ItemCheck;
             checkBoxListToDo.SelectedIndexChanged += checkBoxListToDo_SelectedIndexChanged;
+            checkBoxListToDo.MouseUp += checkBoxListToDo_MouseUp;
             // 
             // lblToDoList
             // 
@@ -362,6 +369,14 @@
             lblDone.TabIndex = 3;
             lblDone.Text = "Done";
             // 
+            // notifyIcon1
+            // 
+            notifyIcon1.BalloonTipIcon = ToolTipIcon.Info;
+            notifyIcon1.BalloonTipTitle = "Information";
+            notifyIcon1.Icon = (Icon)resources.GetObject("notifyIcon1.Icon");
+            notifyIcon1.Text = "To Do List";
+            notifyIcon1.Visible = true;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(10F, 23F);
@@ -425,5 +440,6 @@
         private ListBox listDone;
         private CheckedListBox checkBoxListToDo;
         private TextBox txtNewTask;
+        private NotifyIcon notifyIcon1;
     }
 }

@@ -63,9 +63,19 @@ namespace ToDoList.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap about_todo_icon {
+        internal static System.Drawing.Bitmap about_icon_bigger {
             get {
-                object obj = ResourceManager.GetObject("about_todo_icon", resourceCulture);
+                object obj = ResourceManager.GetObject("about_icon_bigger", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap about_todo_item {
+            get {
+                object obj = ResourceManager.GetObject("about_todo_item", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

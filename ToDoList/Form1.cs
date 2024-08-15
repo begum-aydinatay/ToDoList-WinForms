@@ -17,12 +17,18 @@ namespace ToDoList
             {
                 this.ReadToDoList();
             }
-            this.FillToDoList();
+            this.FillLists();
+
+            this.notifyIcon1.BalloonTipText = "Tasks loaded.";
+            this.notifyIcon1.ShowBalloonTip(2000);
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             this.SaveToDoList();
+
+            this.notifyIcon1.BalloonTipText = "Application exited.";
+            this.notifyIcon1.ShowBalloonTip(2000);
         }
 
         private void btnAddItem_Click(object sender, EventArgs e)
@@ -35,8 +41,11 @@ namespace ToDoList
             };
 
             this.Tasks.Add(newTask);
-            this.FillToDoList();
+            this.FillLists();
             this.txtNewTask.Text = string.Empty;
+
+            this.notifyIcon1.BalloonTipText = "New task added.";
+            this.notifyIcon1.ShowBalloonTip(2000);
         }
 
         private void btnEditItem_Click(object sender, EventArgs e)
@@ -46,12 +55,15 @@ namespace ToDoList
             {
                 ToDoItem selectedTask = (ToDoItem)this.checkBoxListToDo.SelectedItem;
                 selectedTask.ItemText = this.txtNewTask.Text;
-                this.FillToDoList();
+                this.FillLists();
             }
             else
             {
                 MessageBox.Show("Please select an item to edit.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+
+            this.notifyIcon1.BalloonTipText = "Task edited.";
+            this.notifyIcon1.ShowBalloonTip(2000);
         }
 
         private void btnDeleteItem_Click(object sender, EventArgs e)
@@ -60,13 +72,16 @@ namespace ToDoList
             {
                 ToDoItem selectedTask = (ToDoItem)this.checkBoxListToDo.SelectedItem;
                 this.Tasks.Remove(selectedTask);
-                this.FillToDoList();
+                this.FillLists();
                 this.txtNewTask.Text = string.Empty;
             }
             else
             {
                 MessageBox.Show("Please select an item to delete.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+
+            this.notifyIcon1.BalloonTipText = "Task deleted.";
+            this.notifyIcon1.ShowBalloonTip(2000);
         }
 
         private void checkBoxListToDo_SelectedIndexChanged(object sender, EventArgs e)
@@ -96,13 +111,21 @@ namespace ToDoList
             this.txtNewTask.Paste();
         }
 
-        private void FillToDoList()
+        private void FillLists()
         {
             this.checkBoxListToDo.Items.Clear();
+            this.listDone.Items.Clear();
 
             foreach (ToDoItem task in Tasks)
             {
-                this.checkBoxListToDo.Items.Add(task);
+                if (task.IsDone)
+                {
+                    this.listDone.Items.Add(task);
+                }
+                else
+                {
+                    this.checkBoxListToDo.Items.Add(task);
+                }
             }
         }
 
@@ -116,5 +139,41 @@ namespace ToDoList
             this.Tasks = serializer.Deserialize<List<ToDoItem>>(Path);
         }
 
+        private void checkBoxListToDo_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            if (e.NewValue == CheckState.Checked)
+            {
+                ToDoItem selectedTask = (ToDoItem)this.checkBoxListToDo.SelectedItem;
+                selectedTask.IsDone = true;
+                selectedTask.DoneDate = DateTime.Now;
+
+                this.notifyIcon1.BalloonTipText = "Task marked as done.";
+                this.notifyIcon1.ShowBalloonTip(2000);
+            }
+        }
+
+        private void checkBoxListToDo_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (this.checkBoxListToDo.CheckedItems.Count > 0)
+            {
+                this.FillLists();
+                this.txtNewTask.Text = string.Empty;
+            }
+        }
+
+        private void menuExit_Click(object sender, EventArgs e)
+        {
+            this.SaveToDoList();
+            Application.Exit();
+
+            this.notifyIcon1.BalloonTipText = "Application exited.";
+            this.notifyIcon1.ShowBalloonTip(2000);
+        }
+
+        private void menuMoreInformation_Click(object sender, EventArgs e)
+        {
+            ProgramInformationBox infoBox = new ProgramInformationBox();
+            infoBox.ShowDialog();
+        }
     }
 }

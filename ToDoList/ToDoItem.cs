@@ -15,7 +15,14 @@ namespace ToDoList
 
         public override string ToString()
         {
-            return ItemText;
+            if (this.IsDone)
+            {
+                return string.Format("{0} ({1})", this.ItemText, this.DoneDate.ToString());
+            }
+            else // if it is a task in progress...
+            {
+                return ItemText;
+            }
         }
     }
 }
